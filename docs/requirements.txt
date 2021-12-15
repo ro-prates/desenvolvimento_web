@@ -8,4 +8,5 @@ Use cases
 - Create lecture
 - Update user
 - Update course
+- Update module
 - Update lecture
