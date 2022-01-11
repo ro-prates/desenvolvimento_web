@@ -1,0 +1,4 @@
+- handle invalid positions in rearringing modules in a course
+- should not have two modules with same name in a course
+- should be able to change order of lectures in module
+- should be able to have a current lecture in enrollment
