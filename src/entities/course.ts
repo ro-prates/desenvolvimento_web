@@ -1,3 +1,4 @@
+import { Lecture } from '.'
 import { Module } from './module'
 import { moveInArray } from './util'
 
@@ -11,8 +12,16 @@ export class Course {
     this.description = description
   }
 
+  get numberOfModules(): number{
+    return this.modules.length
+  }
+
   add (module: Module): void {
-    this.modules.push(module)
+    if(!this.includesModuleWithSameName(module)) this.modules.push(module)
+  }
+
+  private includesModuleWithSameName (module: Module): boolean {
+    return this.modules.find(mod => module.name === module.name) !== undefined
   }
 
   includes (module: Module): boolean {
@@ -20,9 +29,7 @@ export class Course {
   }
 
   move (module: Module, to: number): void {
-    if (to > this.modules.length || to <= 0) {
-      return
-    }
+    if (to > this.modules.length || to < 1) return
     const from = this.position(module)
     moveInArray(this.modules, from - 1, to - 1)
   }
@@ -33,5 +40,12 @@ export class Course {
       return undefined
     }
     return this.modules.indexOf(moduleInCourse) + 1
+  }
+
+  moveLecture(lecture: Lecture, fromModule: Module, toModule: Module, position: number): void{
+    fromModule.remove(lecture)
+    toModule.add(lecture)
+    const currentLecturePosition = toModule.position(lecture)
+    if(currentLecturePosition !== position) toModule.move(lecture, position)
   }
 }
