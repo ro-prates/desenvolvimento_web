@@ -1,4 +1,22 @@
-- handle invalid positions in rearringing modules in a course
-- should not have two modules with same name in a course
-- should be able to change order of lectures in module
+- refactoring: course, module, and lecture should be container with parts
+  - A course is a container of modules
+  - A module is a container of lectures
+  - A lecture is a container of further materials
+
+- refactoring the above refactoring
+  - use composition instead of inheritance
+    - A course contains a container of modules ...
+      -> Delegate calls
+
+- handle exceptional cases:
+  -> adding an existing module/lecture/material
+  -> removing an unexisting module/lecture/material
+  -> determining the position of an unexisting module/lecture/material
+  -> moving module/lecture/material to invalid position
+  -> moving unexisting module/lecture/material
+
+- should be able to remove modules from courses
+- should be able to rename modules/lectures
+- should be able to add modules/lectures in a specific position
+- should be able to track progress of user in an enrolled course (watched lectures?)
 - should be able to have a current lecture in enrollment
